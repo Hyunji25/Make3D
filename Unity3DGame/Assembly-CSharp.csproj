@@ -56,10 +56,9 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Editors\WayPointEditor.cs" />
-    <Compile Include="Assets\Scripts\Editors\WayPoint.cs" />
-    <Compile Include="Assets\WayPoint\parent.cs" />
-    <Compile Include="Assets\Scripts\Node.cs" />
+    <Compile Include="Assets\Scripts\WayPoint\Editors\WayPointEditor.cs" />
+    <Compile Include="Assets\Scripts\WayPoint\Editors\WayPoint.cs" />
+    <Compile Include="Assets\Scripts\WayPoint\Node.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
