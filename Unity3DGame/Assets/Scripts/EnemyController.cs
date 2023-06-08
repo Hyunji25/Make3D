@@ -29,8 +29,8 @@ public class EnemyController : MonoBehaviour
     {
         Speed = 5.0f;
 
-        float x = 0;
-        float z = 0;
+        float x = 2.5f;
+        float z = 3.5f;
 
         LeftCheck = transform.position + (new Vector3(-x, 0.0f, z));
         RightCheck = transform.position + (new Vector3(x, 0.0f, z));
@@ -47,16 +47,16 @@ public class EnemyController : MonoBehaviour
 
             transform.LookAt(Target.transform); // 임시방편, 쓰지마, 정면 방향 바라보게 하려고
 
-            Debug.DrawRay(transform.position, Direction * 5.0f, Color.red);
+            Debug.DrawRay(transform.position, LeftCheck * 5.0f, Color.red);
 
-            if(Physics.Raycast(transform.position, Direction, out hit, 5.0f))
+            if(Physics.Raycast(transform.position, LeftCheck, out hit, 5.0f))
             {
 
             }
 
-            Debug.DrawRay(transform.position, Direction * 5.0f, Color.red);
+            Debug.DrawRay(transform.position, RightCheck * 5.0f, Color.red);
 
-            if (Physics.Raycast(transform.position, Direction, out hit, 5.0f))
+            if (Physics.Raycast(transform.position, RightCheck, out hit, 5.0f))
             {
 
             }
