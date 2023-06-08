@@ -433,3 +433,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PointList: []
+  Angle: 0
