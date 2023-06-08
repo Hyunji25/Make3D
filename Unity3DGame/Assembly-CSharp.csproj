@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\WayPoint\Editors\WayPointEditor.cs" />
     <Compile Include="Assets\Scripts\WayPoint\Editors\WayPoint.cs" />
     <Compile Include="Assets\Scripts\WayPoint\Node.cs" />
+    <Compile Include="Assets\Scripts\EnemyController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
