@@ -25,9 +25,18 @@ public class LineCollsion : MonoBehaviour
 
             line.StartPoint = OldPoint;
 
+            float fY = 0.0f;
+
+            while (true)
+            {
+                fY = Random.Range(-5.0f, 5.0f);
+
+                if (fY != 0.0f)
+                    break;
+            }
             OldPoint = new Vector3(
                 OldPoint.x + Random.Range(1.0f, 5.0f),
-                OldPoint.y + Random.Range(-5.0f, 5.0f),
+                OldPoint.y + fY,
                 0.0f);
 
             line.EndPoint = OldPoint;

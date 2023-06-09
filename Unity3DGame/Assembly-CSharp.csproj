@@ -61,9 +61,9 @@
     <Compile Include="Assets\Scripts\Math\CenterController.cs" />
     <Compile Include="Assets\Scripts\WayPoint\Editors\WayPoint.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Math\LineCollsion.cs" />
     <Compile Include="Assets\Scripts\WayPoint\Editors\WayPointEditor.cs" />
     <Compile Include="Assets\Scripts\Math\MyGizmo.cs" />
-    <Compile Include="Assets\Scripts\Math\LineCollsion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
