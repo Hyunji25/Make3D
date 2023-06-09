@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CenterController : MonoBehaviour
 {
-    public List<GameObject> PointList;
     /*
+    public List<GameObject> PointList;
         void Start()
         {
             // 360도를 5도만큼 -> 360 / 5 = 72
@@ -41,12 +41,9 @@ public class CenterController : MonoBehaviour
         float hor = Input.GetAxis("Horizontal");
         float ver = Input.GetAxis("Vertical");
 
-        Vector3 Movement = new Vector3(hor, 0.0f, ver) * 5.0f * Time.deltaTime;
+        Vector3 Movement = new Vector3(hor, Mathf.Sin(Angle * Mathf.Deg2Rad) * 5.0f, ver) * 5.0f * Time.deltaTime;
 
         transform.Translate(Movement);
-
-        transform.position = new Vector3(
-            Movement.x, Mathf.Sin(Angle * Mathf.Deg2Rad) * 5.0f, Movement.y); // *
     }
 }
 
