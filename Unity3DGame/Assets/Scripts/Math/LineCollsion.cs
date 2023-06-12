@@ -34,6 +34,7 @@ public class LineCollsion : MonoBehaviour
                 if (fY != 0.0f)
                     break;
             }
+
             OldPoint = new Vector3(
                 OldPoint.x + Random.Range(1.0f, 5.0f),
                 OldPoint.y + fY,
@@ -44,33 +45,38 @@ public class LineCollsion : MonoBehaviour
             LineList.Add(line);
         }
 
-        Width = 0.0f;
-        Height = 0.0f;
+        Width = 1.0f;
+        Height = 1.0f;
     }
 
     void Update()
     {
+        float Hor = Input.GetAxisRaw("Horizontal");
+
+        if (transform.position.x <= 0.0f)
+            transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+
+        float MovementX = transform.position.x + (Hor * Time.deltaTime * 5.0f);
+        Vector3 Offset;
+
         foreach (Line element in LineList)
         {
             Debug.DrawLine(element.StartPoint, element.EndPoint, Color.green);
 
-            Width = element.EndPoint.x - element.StartPoint.x;
-            Height = element.EndPoint.y - element.StartPoint.y;
-
-        }
-
-        foreach (Line element in LineList)
-        {
-            if (element.StartPoint.x <= transform.position.x && transform.position.x < element.EndPoint.x)
+            if (element.StartPoint.x <= transform.position.x &&
+                transform.position.x < element.EndPoint.x)
             {
+                Debug.DrawLine(element.StartPoint, element.EndPoint, Color.red);
+
+                Offset.x = transform.position.x - element.StartPoint.x;
+                Offset.y = element.StartPoint.y;
+
                 Width = element.EndPoint.x - element.StartPoint.x;
                 Height = element.EndPoint.y - element.StartPoint.y;
 
-                Debug.DrawLine(element.StartPoint, element.EndPoint, Color.red);
-
                 transform.position = new Vector3(
-                    transform.position.x,
-                    Height / Width * (transform.position.x),
+                    MovementX,
+                    (Height / Width) * Offset.x + Offset.y,
                     0.0f);
             }
         }
