@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\WayPoint\Editors\WayPoint.cs" />
     <Compile Include="Assets\Scripts\Math\LineCollsion.cs" />
     <Compile Include="Assets\Scripts\Math\BulletController.cs" />
+    <Compile Include="Assets\Scripts\Rotation\Rotation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
