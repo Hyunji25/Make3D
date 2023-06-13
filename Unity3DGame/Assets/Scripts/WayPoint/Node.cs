@@ -5,5 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class Node : MonoBehaviour
 {
-    [HideInInspector] public Node Next;
+    //[HideInInspector] 
+    public Node Next;
 }

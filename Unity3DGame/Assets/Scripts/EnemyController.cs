@@ -47,7 +47,6 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        
         if (Target)
         {
             Vector3 Direction = (Target.transform.position - transform.position).normalized;
@@ -103,9 +102,9 @@ public class EnemyController : MonoBehaviour
         for (float f = startAngle + 5.0f; f < (transform.eulerAngles.y + Angle - 5.0f); f += 5.0f)
         {
             Debug.DrawRay(transform.position,
-            new Vector3(
-                Mathf.Sin(f * Mathf.Deg2Rad), 0.0f, Mathf.Cos(f * Mathf.Deg2Rad)) * 2.5f,
-            Color.red);
+                new Vector3(
+                    Mathf.Sin(f * Mathf.Deg2Rad), 0.0f, Mathf.Cos(f * Mathf.Deg2Rad)) * 2.5f,
+                Color.red);
         }
     }
     /*

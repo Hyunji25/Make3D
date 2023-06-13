@@ -61,11 +61,11 @@
     <Compile Include="Assets\Scripts\Math\MyGizmo.cs" />
     <Compile Include="Assets\Scripts\Math\BulletController.cs" />
     <Compile Include="Assets\Scripts\WayPoint\Node.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Math\CenterController.cs" />
     <Compile Include="Assets\Scripts\Math\LineCollsion.cs" />
     <Compile Include="Assets\Scripts\WayPoint\Editors\WayPointEditor.cs" />
     <Compile Include="Assets\Scripts\Rotation\Rotation.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
