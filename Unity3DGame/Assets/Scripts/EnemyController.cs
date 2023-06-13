@@ -6,8 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyController : MonoBehaviour
 {
-    public Camera camera;
-
     public Node Target;
 
     private float Speed;
@@ -20,14 +18,8 @@ public class EnemyController : MonoBehaviour
 
     private bool move;
 
-    private bool View;
-
-    private Vector3 offset;
-
     private void Awake()
     {
-        camera = Camera.main;
-
         SphereCollider coll = GetComponent<SphereCollider>();
         coll.radius = 0.05f;
         coll.isTrigger = true;
@@ -51,60 +43,44 @@ public class EnemyController : MonoBehaviour
         Angle = 45.0f;
 
         move = false;
-        View = false;
-
-        offset = new Vector3(0.0f, 10.0f, 10.0f);
     }
 
     private void Update()
     {
-        View = Input.GetKey(KeyCode.Tab) ? true : false;
-
-        if (View)
-        {
-            offset = new Vector3(0.0f, 5.0f, -3.0f);
-            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, 100.0f, Time.deltaTime);
-        }
-        else
-        {
-            offset = new Vector3(0.0f, 6.5f, -10.0f);
-            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, 60.0f, Time.deltaTime);
-        }
-
-        camera.transform.position = Vector3.Lerp(
-            camera.transform.position,
-            transform.position + offset,
-            Time.deltaTime);
         
-        camera.transform.LookAt(transform.position);
-
-
         if (Target)
         {
+            Vector3 Direction = (Target.transform.position - transform.position).normalized;
+
+            transform.rotation = Quaternion.Lerp(
+                    transform.rotation,
+                    Quaternion.LookRotation(Direction),
+                    0.016f);
+
             if (move)
             {
-                Vector3 Direction = (Target.transform.position - transform.position).normalized;
                 transform.position += Direction * Speed * Time.deltaTime;
             }
             else
-            {
-                transform.rotation = Quaternion.Lerp(
-                    transform.rotation,
-                    Quaternion.LookRotation(Vector3.back),
-                    Time.deltaTime);
+            {   
+                Vector3 targetDir = Target.transform.position - transform.position;
+                float angle = Vector3.Angle(targetDir, transform.forward);
+
+                if (Vector3.Angle(targetDir, transform.forward) < 0.1f)
+                    move = true;
             }
         }
     }
 
     private void FixedUpdate()
     {
-        RaycastHit hit;
+        float startAngle = (transform.eulerAngles.y - Angle);
 
-        //Debug.DrawRay(transform.position, LeftCheck * 5.0f, Color.red);
+        RaycastHit hit;
 
         Debug.DrawRay(transform.position,
             new Vector3(
-                Mathf.Sin(-Angle * Mathf.Deg2Rad), 0.0f, Mathf.Cos(-Angle * Mathf.Deg2Rad)) * 2.5f,
+                Mathf.Sin(startAngle * Mathf.Deg2Rad), 0.0f, Mathf.Cos(startAngle * Mathf.Deg2Rad)) * 2.5f,
             Color.white);
 
         if (Physics.Raycast(transform.position, LeftCheck, out hit, 5.0f))
@@ -112,11 +88,9 @@ public class EnemyController : MonoBehaviour
 
         }
 
-        //Debug.DrawRay(transform.position, RightCheck * 5.0f, Color.red);
-
         Debug.DrawRay(transform.position,
             new Vector3(
-                Mathf.Sin(Angle * Mathf.Deg2Rad), 0.0f, Mathf.Cos(Angle * Mathf.Deg2Rad)) * 2.5f,
+                Mathf.Sin((transform.eulerAngles.y + Angle) * Mathf.Deg2Rad), 0.0f, Mathf.Cos((transform.eulerAngles.y + Angle) * Mathf.Deg2Rad)) * 2.5f,
             Color.green);
 
         if (Physics.Raycast(transform.position, RightCheck, out hit, 5.0f))
@@ -124,7 +98,9 @@ public class EnemyController : MonoBehaviour
 
         }
 
-        for (float f = -Angle + 5.0f; f < Angle; f += 5.0f)
+        //int Count = (int)((Angle * 2) / 5.0f);
+
+        for (float f = startAngle + 5.0f; f < (transform.eulerAngles.y + Angle - 5.0f); f += 5.0f)
         {
             Debug.DrawRay(transform.position,
             new Vector3(
@@ -132,7 +108,7 @@ public class EnemyController : MonoBehaviour
             Color.red);
         }
     }
-
+    /*
     void function()
     {
         if (move)
@@ -157,10 +133,33 @@ public class EnemyController : MonoBehaviour
 
         move = false;
     }
-
+    */
     private void OnTriggerEnter(Collider other) // 트리거에 체크되어 있으면 이거, 아니면 OnCollisionEnter
     {
+        move = false;
+
         if (Target.transform.name == other.transform.name)
             Target = Target.Next;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 다 복사

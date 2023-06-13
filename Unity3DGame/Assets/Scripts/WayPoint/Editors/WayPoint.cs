@@ -8,7 +8,7 @@ public class WayPoint : MonoBehaviour
 
     void Start()
     {
-        parent = GameObject.Find("ParentObject");
+        parent = GameObject.Find("ParentObject"); // *
     }
 
     void Update()
