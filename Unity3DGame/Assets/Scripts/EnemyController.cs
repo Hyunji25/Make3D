@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyController : MonoBehaviour
 {
-    private Camera camera;
+    public Camera camera;
 
     public Node Target;
 
@@ -63,18 +63,18 @@ public class EnemyController : MonoBehaviour
         if (View)
         {
             offset = new Vector3(0.0f, 5.0f, -3.0f);
-            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, 100.0f, 0.012f);
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, 100.0f, Time.deltaTime);
         }
         else
         {
-            offset = new Vector3(0.0f, 10.0f, -10.0f);
-            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, 60.0f, 0.012f);
+            offset = new Vector3(0.0f, 6.5f, -10.0f);
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, 60.0f, Time.deltaTime);
         }
 
         camera.transform.position = Vector3.Lerp(
             camera.transform.position,
-            transform.position + offset, 
-            0.016f);
+            transform.position + offset,
+            Time.deltaTime);
         
         camera.transform.LookAt(transform.position);
 
@@ -91,11 +91,6 @@ public class EnemyController : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(
                     transform.rotation,
                     Quaternion.LookRotation(Vector3.back),
-                    Time.deltaTime);
-
-                transform.rotation = Quaternion.Lerp(
-                    camera.transform.rotation,
-                    Quaternion.LookRotation(Vector3.forward, Vector3.back),
                     Time.deltaTime);
             }
         }
@@ -129,7 +124,7 @@ public class EnemyController : MonoBehaviour
 
         }
 
-        for (float f = -Angle; f <= Angle; f += 5.0f)
+        for (float f = -Angle + 5.0f; f < Angle; f += 5.0f)
         {
             Debug.DrawRay(transform.position,
             new Vector3(

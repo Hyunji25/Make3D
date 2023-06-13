@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638221251363626082
+      ticks: 638222107072913863
     m_Hash: 3908217133
   m_LockFileStatus:
     m_FilePath: C:/Users/SGA/Desktop/test/Make3D/Unity3DGame/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638221251493314513
+      ticks: 638222107192403382
     m_Hash: 670474601
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
