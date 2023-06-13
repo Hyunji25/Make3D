@@ -6,9 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyController : MonoBehaviour
 {
-    public Node Target;
+    public Node Target = null;
+
+    public List<Vector3> vertices = new List<Vector3>();
 
     private float Speed;
+
+    public Material material;
 
     Vector3 LeftCheck;
     Vector3 RightCheck;
@@ -27,7 +31,7 @@ public class EnemyController : MonoBehaviour
         Rigidbody rigid = GetComponent<Rigidbody>();
         rigid.useGravity = false;
 
-        Target = GameObject.Find("ParentObject").transform.GetChild(0).GetComponent<Node>();
+        //Target = GameObject.Find("ParentObject").transform.GetChild(0).GetComponent<Node>();
     }
 
     private void Start()
@@ -47,6 +51,36 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+            {
+                MeshFilter meshFilter = hit.transform.gameObject.GetComponent<MeshFilter>();
+
+                Vector3[] verticesPoint = meshFilter.mesh.vertices;
+
+                for (int i =0;i < verticesPoint.Length;++i)
+                {
+                    if (!vertices.Contains(verticesPoint[i]) && verticesPoint[i].y < transform.position.y + 0.05
+                        && transform.position.y < verticesPoint[i].y + 0.05)
+                        vertices.Add(verticesPoint[i]);
+                }
+            }
+
+            for (int i = 0;i < vertices.Count; ++i)
+            {
+                GameObject obj = new GameObject(i.ToString());
+                obj.transform.position = new Vector3(
+                            hit.transform.position.x + vertices[i].x * hit.transform.lossyScale.x,
+                            transform.position.y,
+                            hit.transform.position.z + vertices[i].z * hit.transform.lossyScale.z);
+
+                obj.AddComponent<MyGizmo>();
+            }
+        }
+
         if (Target)
         {
             Vector3 Direction = (Target.transform.position - transform.position).normalized;
@@ -133,12 +167,14 @@ public class EnemyController : MonoBehaviour
         move = false;
     }
     */
+
     private void OnTriggerEnter(Collider other) // 트리거에 체크되어 있으면 이거, 아니면 OnCollisionEnter
     {
         move = false;
-
+        /*
         if (Target.transform.name == other.transform.name)
             Target = Target.Next;
+        */
     }
 }
 
