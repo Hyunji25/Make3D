@@ -6,9 +6,17 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyController : MonoBehaviour
 {
-    public Node Target;
+    const int T = 1; // Transform
+    const int R = 2; // Rotation
+    const int S = 3; // Scale
+    const int M = 0; // Matrix
+
+    public Node Target = null;
+    public List<Vector3> vertices = new List<Vector3>();
 
     private float Speed;
+
+    private Material material;
 
     Vector3 LeftCheck;
     Vector3 RightCheck;
@@ -17,6 +25,9 @@ public class EnemyController : MonoBehaviour
     public float Angle;
 
     private bool move;
+
+    [Range(1.0f, 2.0f)]
+    public float scale;
 
     private void Awake()
     {
@@ -27,7 +38,7 @@ public class EnemyController : MonoBehaviour
         Rigidbody rigid = GetComponent<Rigidbody>();
         rigid.useGravity = false;
 
-        Target = GameObject.Find("ParentObject").transform.GetChild(0).GetComponent<Node>();
+        //Target = GameObject.Find("ParentObject").transform.GetChild(0).GetComponent<Node>();
     }
 
     private void Start()
@@ -43,11 +54,12 @@ public class EnemyController : MonoBehaviour
         Angle = 45.0f;
 
         move = false;
+
+        scale = 1.0f;
     }
 
     private void Update()
     {
-        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RaycastHit hit;
@@ -58,27 +70,52 @@ public class EnemyController : MonoBehaviour
 
                 Vector3[] verticesPoint = meshFilter.mesh.vertices;
 
+                List<Vector3> temp = new List<Vector3>();
+
                 for (int i =0;i < verticesPoint.Length;++i)
                 {
-                    if (!vertices.Contains(verticesPoint[i]) && verticesPoint[i].y < transform.position.y + 0.05
-                        && transform.position.y < verticesPoint[i].y + 0.05)
-                        vertices.Add(verticesPoint[i]);
+                    if (!temp.Contains(verticesPoint[i]) 
+                        && verticesPoint[i].y < transform.position.y + 0.05f
+                        && transform.position.y < verticesPoint[i].y + 0.05f)
+                    {
+                        temp.Add(verticesPoint[i]);
+                    }
+                }
+
+                for (int i = 0; i < temp.Count; ++i)
+                {
+                    temp[i] = new Vector3(
+                        temp[i].x,
+                        0.1f,
+                        temp[i].z);
+                }
+
+                vertices.Clear();
+                for (int i = 0; i < temp.Count; ++i)
+                {
+                    GameObject obj = new GameObject(i.ToString());
+
+                    Matrix4x4[] matrix = new Matrix4x4[4];
+
+                    //Matrix4x4.Translate
+
+                    matrix[T] = Matrix.Translate(hit.transform.position);
+                    matrix[R] = Matrix.Rotate(hit.transform.eulerAngles);
+                    matrix[S] = Matrix.Scale(hit.transform.localScale * scale);
+
+                    matrix[M] = matrix[T] * matrix[R] * matrix[S];
+
+                    Vector3 v = matrix[M].MultiplyPoint(temp[i]);
+
+                    vertices.Add(v);
+
+                    obj.transform.position = v;
+                    obj.AddComponent<MyGizmo>();
                 }
             }
-
-            for (int i = 0;i < vertices.Count; ++i)
-            {
-                GameObject obj = new GameObject(i.ToString());
-                obj.transform.position = new Vector3(
-                            hit.transform.position.x + vertices[i].x * hit.transform.lossyScale.x,
-                            transform.position.y,
-                            hit.transform.position.z + vertices[i].z * hit.transform.lossyScale.z);
-
-                obj.AddComponent<MyGizmo>();
-            }
         }
-        */
 
+        /*
         if (Target)
         {
             Vector3 Direction = (Target.transform.position - transform.position).normalized;
@@ -101,6 +138,7 @@ public class EnemyController : MonoBehaviour
                     move = true;
             }
         }
+        */
     }
 
     private void FixedUpdate()
@@ -139,39 +177,24 @@ public class EnemyController : MonoBehaviour
                 Color.red);
         }
     }
-    /*
-    void function()
-    {
-        if (move)
-            return;
-
-        move = true;
-        StartCoroutine(SetMove());
-    }
-
-    IEnumerator SetMove()
-    {
-        float time = 0.0f;
-
-        while (time < 1.0f)
-        {
-            
-
-            time += Time.deltaTime;
-
-            yield return null;
-        }
-
-        move = false;
-    }
-    */
 
     private void OnTriggerEnter(Collider other) // 트리거에 체크되어 있으면 이거, 아니면 OnCollisionEnter
     {
         move = false;
-        
+        /*
         if (Target.transform.name == other.transform.name)
             Target = Target.Next;
+        */
+    }
+
+    void Output(Matrix4x4 _m)
+    {
+
+        Debug.Log("============================================");
+        Debug.Log(_m.m00 + ", " + _m.m01 + ", " + _m.m02 + ", " + _m.m03);
+        Debug.Log(_m.m10 + ", " + _m.m11 + ", " + _m.m12 + ", " + _m.m13);
+        Debug.Log(_m.m20 + ", " + _m.m21 + ", " + _m.m22 + ", " + _m.m23);
+        Debug.Log(_m.m30 + ", " + _m.m31 + ", " + _m.m32 + ", " + _m.m33);
     }
 }
 
@@ -179,19 +202,4 @@ public class EnemyController : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 다 복사
+// 6/14 못 했다
