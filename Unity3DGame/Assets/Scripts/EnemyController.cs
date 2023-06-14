@@ -6,13 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyController : MonoBehaviour
 {
-    public Node Target = null;
-
-    public List<Vector3> vertices = new List<Vector3>();
+    public Node Target;
 
     private float Speed;
-
-    public Material material;
 
     Vector3 LeftCheck;
     Vector3 RightCheck;
@@ -31,7 +27,7 @@ public class EnemyController : MonoBehaviour
         Rigidbody rigid = GetComponent<Rigidbody>();
         rigid.useGravity = false;
 
-        //Target = GameObject.Find("ParentObject").transform.GetChild(0).GetComponent<Node>();
+        Target = GameObject.Find("ParentObject").transform.GetChild(0).GetComponent<Node>();
     }
 
     private void Start()
@@ -51,6 +47,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RaycastHit hit;
@@ -80,6 +77,7 @@ public class EnemyController : MonoBehaviour
                 obj.AddComponent<MyGizmo>();
             }
         }
+        */
 
         if (Target)
         {
@@ -171,10 +169,9 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerEnter(Collider other) // 트리거에 체크되어 있으면 이거, 아니면 OnCollisionEnter
     {
         move = false;
-        /*
+        
         if (Target.transform.name == other.transform.name)
             Target = Target.Next;
-        */
     }
 }
 
