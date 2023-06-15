@@ -13,7 +13,8 @@ public class EnemyController : MonoBehaviour
 
     public Node Target = null;
     public List<GameObject> vertices = new List<GameObject>();
-    public List<GameObject> bestList = new List<GameObject>();
+    public List<GameObject> bastList = new List<GameObject>();
+    public List<Node> OpenList = new List<Node>();
 
     private float Speed;
 
@@ -45,7 +46,6 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         parent = new GameObject("Nodes");
-
         Speed = 5.0f;
 
         float x = 2.5f;
@@ -75,9 +75,9 @@ public class EnemyController : MonoBehaviour
 
                 List<Vector3> temp = new List<Vector3>();
 
-                for (int i =0;i < verticesPoint.Length;++i)
+                for (int i = 0; i < verticesPoint.Length; ++i)
                 {
-                    if (!temp.Contains(verticesPoint[i]) 
+                    if (!temp.Contains(verticesPoint[i])
                         && verticesPoint[i].y < transform.position.y + 0.05f
                         && transform.position.y < verticesPoint[i].y + 0.05f)
                     {
@@ -95,26 +95,26 @@ public class EnemyController : MonoBehaviour
 
                 GameObject startPoint = null;
                 float dis = 0.0f;
+
                 float bestDistance = 1000000.0f;
 
+                OpenList.Clear();
                 vertices.Clear();
+
                 for (int i = 0; i < temp.Count; ++i)
                 {
                     GameObject obj = new GameObject(i.ToString());
 
                     Matrix4x4[] matrix = new Matrix4x4[4];
 
-                    //Matrix4x4.Translate
-
                     matrix[T] = Matrix.Translate(hit.transform.position);
                     matrix[R] = Matrix.Rotate(hit.transform.eulerAngles);
-                    matrix[S] = Matrix.Scale(hit.transform.localScale * scale);
+                    matrix[S] = Matrix.Scale(hit.transform.lossyScale * scale);
 
                     matrix[M] = matrix[T] * matrix[R] * matrix[S];
 
                     Vector3 v = matrix[M].MultiplyPoint(temp[i]);
-
-                    vertices.Add(obj);
+                    dis = Vector3.Distance(transform.position, v);
 
                     obj.transform.position = v;
                     obj.AddComponent<Node>();
@@ -122,39 +122,87 @@ public class EnemyController : MonoBehaviour
                     obj.transform.SetParent(parent.transform);
                     MyGizmo gizmo = obj.AddComponent<MyGizmo>();
 
-                    dis = Vector3.Distance(transform.position, v);
-                    Debug.Log(dis + ", " + bestDistance);
-
                     if (dis < bestDistance)
                     {
                         bestDistance = dis;
                         startPoint = obj;
+
+                        if (i == 0)
+                            vertices.Add(obj);
                     }
+                    else
+                        vertices.Add(obj);
                 }
 
                 if (startPoint)
                 {
                     startPoint.GetComponent<MyGizmo>().color = Color.red;
-                    bestList.Add(startPoint);
+                    OpenList.Add(startPoint.GetComponent<Node>());
                 }
 
-                Node node = bestList[0].GetComponent<Node>();
-                node.Cost = 0.0f;
-                int Count = 0;
+                Node MainNode = OpenList[0].GetComponent<Node>();
+                MainNode.Cost = 0.0f;
 
-
-
-                /*
-                while(true)
+                while (vertices.Count != 0)
                 {
-                    Count++;
-                    Node next = vertices[Count].GetComponent<Node>();
+                    float OldDistance = 1000000.0f;
+                    int index = 0;
 
-                    if (vertices.Count <= Count || 100 < Count)
-                        break;
+                    for (int i = 0; i < vertices.Count; ++i)
+                    {
+                        float Distance = Vector3.Distance(OpenList[0].transform.position, vertices[i].transform.position);
+
+                        if (Distance < OldDistance)
+                        {
+                            OldDistance = Distance;
+                            Node Nextnode = vertices[i].GetComponent<Node>();
+                            Nextnode.Cost = MainNode.Cost + Distance;
+                            index = i;
+                        }
+                    }
+
+                    if (!OpenList.Contains(vertices[index].GetComponent<Node>()))
+                    {
+                        /*
+                         * 조건 1
+                        RaycastHit Hit;
+
+                        if (Physics.Raycast(origin(이전노드), direction(현재노드), out Hit, OldDistance))
+                        {
+                            if (hit.transform.tag != "Node")
+                            {
+
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        */
+
+                        /*
+                         * 조건 2
+                         * 이전 노드의 위치에서 EndPoint의 거리보다 현재에서 EndPoint의 거리가 더 짧을때
+                         */
+
+                        OpenList.Add(vertices[index].GetComponent<Node>());
+                        vertices[index].GetComponent<Node>();
+
+                        vertices.Remove(vertices[index]);
+                    }
                 }
-                */
 
+                for (int i = 0; i< OpenList.Count; ++i)
+                {
+                    Node Line = vertices[i].GetComponent<Node>();
+
+                    if (i==0)
+                    {
+                        Line.Next = OpenList[1].;
+                    }
+                    Line.Next = OpenList[i + 2];
+
+                }
             }
         }
 
@@ -201,9 +249,9 @@ public class EnemyController : MonoBehaviour
         }
 
         Debug.DrawRay(transform.position,
-            new Vector3(
-                Mathf.Sin((transform.eulerAngles.y + Angle) * Mathf.Deg2Rad), 0.0f, Mathf.Cos((transform.eulerAngles.y + Angle) * Mathf.Deg2Rad)) * 2.5f,
-            Color.green);
+             new Vector3(
+                 Mathf.Sin((transform.eulerAngles.y + Angle) * Mathf.Deg2Rad), 0.0f, Mathf.Cos((transform.eulerAngles.y + Angle) * Mathf.Deg2Rad)) * 2.5f,
+             Color.green);
 
         if (Physics.Raycast(transform.position, RightCheck, out hit, 5.0f))
         {
@@ -221,28 +269,22 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) // 트리거에 체크되어 있으면 이거, 아니면 OnCollisionEnter
+    private void OnTriggerEnter(Collider other)
     {
         move = false;
+
         /*
         if (Target.transform.name == other.transform.name)
             Target = Target.Next;
-        */
+         */
     }
 
-    void Output(Matrix4x4 _m)
+    void Outpot(Matrix4x4 _m)
     {
-
-        Debug.Log("============================================");
+        Debug.Log("==============================================");
         Debug.Log(_m.m00 + ", " + _m.m01 + ", " + _m.m02 + ", " + _m.m03);
         Debug.Log(_m.m10 + ", " + _m.m11 + ", " + _m.m12 + ", " + _m.m13);
         Debug.Log(_m.m20 + ", " + _m.m21 + ", " + _m.m22 + ", " + _m.m23);
         Debug.Log(_m.m30 + ", " + _m.m31 + ", " + _m.m32 + ", " + _m.m33);
     }
 }
-
-
-
-
-
-// 6/14 못 했다
