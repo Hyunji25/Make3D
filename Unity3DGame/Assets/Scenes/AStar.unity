@@ -196,13 +196,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 652005915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b30c9eb09004c86489737608c2cd375c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d95f85578c76194094c01e2571a85bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   vertices: []
   Angle: 0
-  scales: 0
+  scale: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef6137bf404a45745832b0f2f45b16e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 42a8ceb8a72b79949b505801bf4accac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 652005915}

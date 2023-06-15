@@ -16,8 +16,6 @@ public class EnemyController : MonoBehaviour
 
     private float Speed;
 
-    private Material material;
-
     Vector3 LeftCheck;
     Vector3 RightCheck;
 
