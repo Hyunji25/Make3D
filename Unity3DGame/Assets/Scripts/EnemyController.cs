@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
 
     public Node Target = null;
     public List<GameObject> vertices = new List<GameObject>();
-    public List<GameObject> bastList = new List<GameObject>();
+    public List<GameObject> bestList = new List<GameObject>();
     public List<Node> OpenList = new List<Node>();
 
     private float Speed;
@@ -29,7 +29,9 @@ public class EnemyController : MonoBehaviour
     [Range(1.0f, 2.0f)]
     public float scale;
 
+
     private GameObject parent;
+
 
     private void Awake()
     {
@@ -127,14 +129,14 @@ public class EnemyController : MonoBehaviour
                         bestDistance = dis;
                         startPoint = obj;
 
-                        if (i == 0)
+                        if(i == 0)
                             vertices.Add(obj);
                     }
                     else
                         vertices.Add(obj);
                 }
 
-                if (startPoint)
+                if(startPoint)
                 {
                     startPoint.GetComponent<MyGizmo>().color = Color.red;
                     OpenList.Add(startPoint.GetComponent<Node>());
@@ -163,6 +165,9 @@ public class EnemyController : MonoBehaviour
 
                     if (!OpenList.Contains(vertices[index].GetComponent<Node>()))
                     {
+
+
+
                         /*
                          * Á¶°Ç 1
                         RaycastHit Hit;
@@ -187,24 +192,13 @@ public class EnemyController : MonoBehaviour
 
                         OpenList.Add(vertices[index].GetComponent<Node>());
                         vertices[index].GetComponent<Node>();
-
+                        
                         vertices.Remove(vertices[index]);
                     }
                 }
-
-                for (int i = 0; i< OpenList.Count; ++i)
-                {
-                    Node Line = vertices[i].GetComponent<Node>();
-
-                    if (i==0)
-                    {
-                        Line.Next = OpenList[1].;
-                    }
-                    Line.Next = OpenList[i + 2];
-
-                }
             }
         }
+
 
         /*
         if (Target)
@@ -212,16 +206,16 @@ public class EnemyController : MonoBehaviour
             Vector3 Direction = (Target.transform.position - transform.position).normalized;
 
             transform.rotation = Quaternion.Lerp(
-                    transform.rotation,
-                    Quaternion.LookRotation(Direction),
-                    0.016f);
+                   transform.rotation,
+                   Quaternion.LookRotation(Direction),
+                   0.016f);
 
             if (move)
             {
                 transform.position += Direction * Speed * Time.deltaTime;
             }
             else
-            {   
+            {
                 Vector3 targetDir = Target.transform.position - transform.position;
                 float angle = Vector3.Angle(targetDir, transform.forward);
 
@@ -229,7 +223,7 @@ public class EnemyController : MonoBehaviour
                     move = true;
             }
         }
-        */
+         */
     }
 
     private void FixedUpdate()
@@ -272,7 +266,7 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         move = false;
-
+        
         /*
         if (Target.transform.name == other.transform.name)
             Target = Target.Next;
