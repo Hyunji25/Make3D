@@ -12,7 +12,8 @@ public class EnemyController : MonoBehaviour
     const int M = 0; // Matrix
 
     public Node Target = null;
-    public List<Vector3> vertices = new List<Vector3>();
+    public List<GameObject> vertices = new List<GameObject>();
+    public List<GameObject> bestList = new List<GameObject>();
 
     private float Speed;
 
@@ -26,6 +27,8 @@ public class EnemyController : MonoBehaviour
 
     [Range(1.0f, 2.0f)]
     public float scale;
+
+    private GameObject parent;
 
     private void Awake()
     {
@@ -41,6 +44,8 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        parent = new GameObject("Nodes");
+
         Speed = 5.0f;
 
         float x = 2.5f;
@@ -88,6 +93,10 @@ public class EnemyController : MonoBehaviour
                         temp[i].z);
                 }
 
+                GameObject startPoint = null;
+                float dis = 0.0f;
+                float bestDistance = 1000000.0f;
+
                 vertices.Clear();
                 for (int i = 0; i < temp.Count; ++i)
                 {
@@ -105,11 +114,47 @@ public class EnemyController : MonoBehaviour
 
                     Vector3 v = matrix[M].MultiplyPoint(temp[i]);
 
-                    vertices.Add(v);
+                    vertices.Add(obj);
 
                     obj.transform.position = v;
-                    obj.AddComponent<MyGizmo>();
+                    obj.AddComponent<Node>();
+
+                    obj.transform.SetParent(parent.transform);
+                    MyGizmo gizmo = obj.AddComponent<MyGizmo>();
+
+                    dis = Vector3.Distance(transform.position, v);
+                    Debug.Log(dis + ", " + bestDistance);
+
+                    if (dis < bestDistance)
+                    {
+                        bestDistance = dis;
+                        startPoint = obj;
+                    }
                 }
+
+                if (startPoint)
+                {
+                    startPoint.GetComponent<MyGizmo>().color = Color.red;
+                    bestList.Add(startPoint);
+                }
+
+                Node node = bestList[0].GetComponent<Node>();
+                node.Cost = 0.0f;
+                int Count = 0;
+
+
+
+                /*
+                while(true)
+                {
+                    Count++;
+                    Node next = vertices[Count].GetComponent<Node>();
+
+                    if (vertices.Count <= Count || 100 < Count)
+                        break;
+                }
+                */
+
             }
         }
 
