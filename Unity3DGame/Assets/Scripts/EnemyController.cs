@@ -31,8 +31,6 @@ public class EnemyController : MonoBehaviour
 
     private GameObject parent;
 
-    private int index;
-
     private void Awake()
     {
         SphereCollider coll = GetComponent<SphereCollider>();
@@ -200,7 +198,6 @@ public class EnemyController : MonoBehaviour
             Node MainNode = StartNode;
             int Count = 0;
 
-
             bestNodes.Add(StartNode);
 
 
@@ -226,6 +223,7 @@ public class EnemyController : MonoBehaviour
                     }
                 }
 
+                /*
                 if (!bestNodes.Contains(OpenList[index]))
                 {
                     Node OldNode = bestNodes[bestNodes.Count - 1];
@@ -255,6 +253,7 @@ public class EnemyController : MonoBehaviour
                     else
                         break;
                 }
+                */
             }
 
             bestNodes.Add(EndNode);
