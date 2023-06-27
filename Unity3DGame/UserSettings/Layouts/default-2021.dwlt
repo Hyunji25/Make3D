@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1663
     height: 981
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 23
+  controlID: 18
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 115
+  controlID: 118
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 116
+  controlID: 119
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -769,9 +769,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 7.8906336, y: -15.401355, z: -2.0940976}
+    m_Target: {x: 11.087321, y: -13.79085, z: 0.1008625}
     speed: 2
-    m_Value: {x: 7.8906336, y: -15.401355, z: -2.0940976}
+    m_Value: {x: 11.087321, y: -13.79085, z: 0.1008625}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -818,13 +818,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.27737534, y: -0.7197103, z: 0.40372372, w: -0.49331158}
+    m_Target: {x: -0.2848305, y: -0.69594127, z: 0.35537475, w: -0.55634135}
     speed: 2
-    m_Value: {x: -0.27572182, y: -0.7204622, z: 0.40130645, w: -0.4938268}
+    m_Value: {x: -0.28494766, y: -0.6957985, z: 0.35662112, w: -0.5545186}
   m_Size:
-    m_Target: 18.628319
+    m_Target: 27.683455
     speed: 2
-    m_Value: 19.506092
+    m_Value: 26.491344
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -890,22 +890,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Lowpoly Nature & Village Pack/Prefabs
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Lowpoly Nature & Village Pack/Prefabs
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\SGA\Desktop\test\Make3D\Unity3DGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 1a590000
-    m_LastClickedID: 22810
-    m_ExpandedIDs: 00000000a6570000d4570000d8570000ec57000000ca9a3b
+    m_SelectedIDs: de960000
+    m_LastClickedID: 38622
+    m_ExpandedIDs: 00000000d4960000da96000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -933,7 +933,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a6570000
+    m_ExpandedIDs: 00000000d4960000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1079,23 +1079,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: de960000
       m_LastClickedID: 0
-      m_ExpandedIDs: 2afbffff
+      m_ExpandedIDs: f4c7ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: PP_Lake_Ground_04
-        m_OriginalName: PP_Lake_Ground_04
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -2082
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 11}
       m_SearchString: 
