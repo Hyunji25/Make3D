@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.54952896, g: 0.7944589, b: 0.9743186, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bab00c04c43b765448eefef1ce8ff84c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41663c9f6f779924584a684f029d6861, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -363,7 +363,7 @@ Terrain:
   m_GameObject: {fileID: 957922655}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: bd66153a53580bb4bbed929cf9c7f6fc, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 1e518a1be9fae764285c1f4ed40a1893, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -598,7 +598,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1050131674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24854d15934eb1b45adfbccb1603b097, type: 3}
+  m_Script: {fileID: 11500000, guid: 313347781c6d80440b7802966749012b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
@@ -732,7 +732,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b0defe2e2a8129b49821483318a22bc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 03f1e6bcb8d07cc4092c68b5f3b82223, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -802,8 +802,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 08f153e5570ba594fbc2714b9c5f4005, type: 2}
-  - {fileID: 2100000, guid: 77b12c462d4777547ae9f8e75105583b, type: 2}
+  - {fileID: 2100000, guid: 3ea86e0b076c4904ca153f0ef9cf2c31, type: 2}
+  - {fileID: 2100000, guid: 3ea86e0b076c4904ca153f0ef9cf2c31, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

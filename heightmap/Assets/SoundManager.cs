@@ -26,7 +26,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
+    //private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
 
     public Dictionary<string, List<AudioInfo>> SoundList = new Dictionary<string, List<AudioInfo>>();
     //public List<AudioClip> SoundList = new List<AudioClip>();
@@ -41,11 +41,14 @@ public class SoundManager : MonoBehaviour
             for (int i = 0; i < Objects.Length; ++i)
             {
                 AudioInfo obj = new AudioInfo();
-            }
-            sounds.Add(Objects[i] as AudioClip);
-        }
+                obj.clip = Objects[i] as AudioClip;
+                obj.key = Objects[i].ToString();
 
-        
+                List<AudioInfo> temp = new List<AudioInfo>();
+                temp.Add(obj);
+                SoundList.Add(path, temp);
+            }
+        }
     }
 
     /*
