@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 278ab41ec3cacb4489a784318cace314, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 3d326ea3b957370449f70169e2413c4d, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.58500135, g: 0.8475692, b: 0.9743205, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 41663c9f6f779924584a684f029d6861, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b0eb26f7398c1c54182f1d96a0b109b6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -363,7 +363,7 @@ Terrain:
   m_GameObject: {fileID: 957922655}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 1e518a1be9fae764285c1f4ed40a1893, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 18b1a105ba61edd4895aca3d49604645, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -598,7 +598,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1050131674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 313347781c6d80440b7802966749012b, type: 3}
+  m_Script: {fileID: 11500000, guid: f3bc537551fc6c44ba77ccaa45f8e07a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
@@ -732,7 +732,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 03f1e6bcb8d07cc4092c68b5f3b82223, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ecbc5c83d0a6384f812e7cae147b892, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -802,8 +802,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3ea86e0b076c4904ca153f0ef9cf2c31, type: 2}
-  - {fileID: 2100000, guid: 3ea86e0b076c4904ca153f0ef9cf2c31, type: 2}
+  - {fileID: 2100000, guid: 72389305d0a52a9479e82466cf7bf43f, type: 2}
+  - {fileID: 2100000, guid: 72389305d0a52a9479e82466cf7bf43f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
