@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
     public LayerMask mask;
 
-    private const string path = "Legacy Shaders/Transparent/Specular";
+    private const string path = "Custom/Transparent/MyShader";
 
     private bool Check;
 
@@ -45,12 +45,20 @@ public class CameraController : MonoBehaviour
             {
                 if (Check == false)
                 {
-                    Check = true;
                     Renderer renderer = hit.transform.GetComponent<Renderer>();
-
+                    Check = true;
                     if (renderer != null)
                         StartCoroutine(SetColor(renderer));
                 }
+                else // Check == true
+                {
+                    Renderer renderer = hit.transform.GetComponent<Renderer>();
+                    Check = false;
+                    if (renderer != null)
+                        StartCoroutine(SetOrigin(renderer));
+                }
+
+                Debug.Log(Check);
             }
         }
     }
@@ -70,6 +78,26 @@ public class CameraController : MonoBehaviour
 
             // ** Alpha(1) -= Time.deltaTime
             color.a -= Time.deltaTime;
+
+            renderer.material.color = color;
+        }
+    }
+
+    IEnumerator SetOrigin(Renderer renderer)
+    {
+        // ** Color값 변경이 가능한 Shader로 변경
+        Material material = new Material(Shader.Find(path));
+
+        // ** 변경된 Shader의 Color값을 받아옴
+        Color color = renderer.material.color;
+
+        // ** color.a이 1.0f보다 작은 경우에만 반복
+        while (color.a < 1.0f)
+        {
+            yield return null;
+
+            // ** Alpha(1) -= Time.deltaTime
+            color.a += Time.deltaTime;
 
             renderer.material.color = color;
         }

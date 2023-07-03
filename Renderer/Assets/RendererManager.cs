@@ -10,31 +10,12 @@ public class RendererManager : MonoBehaviour
 
     void Start()
     {
-        renderer = GetComponent<Renderer>();
-    }
-
-    IEnumerator SetColor(Renderer renderer)
-    {
-        // ** Color값 변경이 가능한 Shader로 변경
-        Material material = new Material(Shader.Find(path));
-
-        // ** 변경된 Shader의 Color값을 받아옴
-        Color color = renderer.material.color;
-
-        // ** color.a이 0.5f보다 큰 경우에만 반복
-        while (0.5f < color.a)
-        {
-            yield return null;
-
-            // ** Alpha(1) -= Time.deltaTime
-            color.a -= Time.deltaTime;
-
-            renderer.material.color = color;
-        }
+        
     }
 
     void Update()
     {
+        /*
         if (Input.GetKey(KeyCode.A))
         {
             if (renderer != null)
@@ -42,5 +23,6 @@ public class RendererManager : MonoBehaviour
                 StartCoroutine(SetColor(renderer));
             }
         }
+        */
     }
 }
