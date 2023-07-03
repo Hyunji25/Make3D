@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\RendererManager.cs" />
+    <Compile Include="Assets\CameraController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
